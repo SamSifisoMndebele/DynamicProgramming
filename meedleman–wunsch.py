@@ -113,7 +113,7 @@ if __name__ == '__main__':
     seq1 = "BAADDCABDDA"
     seq2 = "BBADCBA"
 
-    score, align1, align2 = string_alignment(seq2, seq1)
+    score, align2, align1 = string_alignment(seq2, seq1)
     print("\nAlignment Score:", score)
     print("Align1:", align1)
     print("Align2:", align2)
