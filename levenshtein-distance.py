@@ -46,18 +46,18 @@ def edit_distance(source: str, target: str) -> int:
                 )
 
     # Traceback path
-    # i, j = sl, tl
-    # path = set()
-    # while i > 0 or j > 0:
-    #     path.add((i, j))
-    #     if i > 0 and cost[i][j] == cost[i - 1][j] + 1:
-    #         i -= 1  # deletion
-    #     elif j > 0 and cost[i][j] == cost[i][j - 1] + 1:
-    #         j -= 1  # insertion
-    #     else:
-    #         i -= 1
-    #         j -= 1  # match or replace
-    # path.add((0, 0))
+    i, j = sl, tl
+    path = set()
+    while i > 0 or j > 0:
+        path.add((i, j))
+        if j > 0 and cost[i][j] == cost[i][j - 1] + 1:  # insertion
+            j -= 1
+        elif i > 0 and cost[i][j] == cost[i - 1][j] + 1:  # deletion
+            i -= 1
+        else:  # match or replace
+            i -= 1
+            j -= 1
+    path.add((0, 0))
 
     # Build table for printing
     table = []
@@ -66,13 +66,13 @@ def edit_distance(source: str, target: str) -> int:
 
     for i in range(sl + 1):
         row_label = " " if i == 0 else source[i - 1]
-        row = [row_label] + cost[i]
-    #     row = [row_label]
-    #     for j in range(tl + 1):
-    #         val = str(cost[i][j])
-    #         if (i, j) in path:
-    #             val = f"*{val}*"   # mark path
-    #         row.append(val)
+        # row = [row_label] + cost[i]
+        row = [row_label]
+        for j in range(tl + 1):
+            val = str(cost[i][j])
+            if (i, j) in path:
+                val = f"*{val}*"   # mark path
+            row.append(val)
         table.append(row)
 
     print(f"\nDP Grid (rows={sl}, cols={tl}): source = {source}, target = {target}")
@@ -81,22 +81,23 @@ def edit_distance(source: str, target: str) -> int:
     return cost[sl][tl]
 
 
-# distance = edit_distance("kitten", "sitting")
-# print("\nEdit distance:", distance)
-# print()
+if __name__ == '__main__':
+    # distance = edit_distance("kitten", "sitting")
+    # print("\nEdit distance:", distance)
+    # print()
 
-# distance = edit_distance("intention", "execution")
-# print("\nEdit distance:", distance)
-# print()
+    # distance = edit_distance("intention", "execution")
+    # print("\nEdit distance:", distance)
+    # print()
 
-# distance = edit_distance("tarp", "star")
-# print("\nEdit distance:", distance)
-# print()
+    # distance = edit_distance("tarp", "star")
+    # print("\nEdit distance:", distance)
+    # print()
 
-distance = edit_distance("earth", "pearl")
-print("\nEdit distance:", distance)
-print()
+    distance = edit_distance("earth", "pearl")
+    print("\nEdit distance:", distance)
+    print()
 
-# distance = edit_distance("saxophone", "microphone")
-# print("\nEdit distance:", distance)
-# print()
+    # distance = edit_distance("saxophone", "microphone")
+    # print("\nEdit distance:", distance)
+    # print()
