@@ -1,3 +1,5 @@
+from tabulate import tabulate
+
 def edit_distance(source: str, target: str) -> int:
     sl, tl = len(source), len(target)
 
@@ -22,9 +24,27 @@ def edit_distance(source: str, target: str) -> int:
                     cost[i - 1][j - 1] + 2   # replacement (cost 2)
                 )
 
+    # Build grid for printing
+    table = []
+    header = [" "] + [" "] + list(target)  # top row: blank + target chars
+    table.append(header)
+
+    for i in range(sl + 1):
+        row_label = " " if i == 0 else source[i - 1]
+        row = [row_label] + cost[i]
+        table.append(row)
+
+    print(f"\nDP Grid (rows={sl}, cols={tl}): source = {source}, target = {target}")
+    print(tabulate(table, headers="firstrow", tablefmt="grid"))
+
     return cost[sl][tl]
 
 
-# Example
-print(edit_distance("kitten", "sitting"))  # Output: 5
-print(edit_distance("intention", "execution"))  # Output: 8
+distance = edit_distance("kitten", "sitting")
+print("\nEdit distance:", distance)
+print()
+
+
+distance = edit_distance("intention", "execution")
+print("\nEdit distance:", distance)
+print()
