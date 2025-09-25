@@ -82,21 +82,17 @@ def edit_distance(source: str, target: str) -> int:
 
 
 if __name__ == '__main__':
-    # distance = edit_distance("kitten", "sitting")
-    # print("\nEdit distance:", distance)
-    # print()
-
-    # distance = edit_distance("intention", "execution")
-    # print("\nEdit distance:", distance)
-    # print()
-
-    # distance = edit_distance("tarp", "star")
-    # print("\nEdit distance:", distance)
-    # print()
+    distance = edit_distance("intention", "execution")
+    print("\nEdit distance:", distance)
+    print()
 
     distance = edit_distance("earth", "pearl")
     print("\nEdit distance:", distance)
     print()
+
+    # distance = edit_distance("kitten", "sitting")
+    # print("\nEdit distance:", distance)
+    # print()
 
     # distance = edit_distance("saxophone", "microphone")
     # print("\nEdit distance:", distance)
