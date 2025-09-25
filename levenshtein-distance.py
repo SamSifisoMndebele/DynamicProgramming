@@ -40,8 +40,8 @@ def edit_distance(source: str, target: str) -> int:
                 insertion = cost[i][j - 1] + 1
                 replacement = cost[i - 1][j - 1] + 2
                 cost[i][j] = min(
-                    deletion,      # deletion
-                    insertion,      # insertion
+                    deletion,     # deletion
+                    insertion,    # insertion
                     replacement   # replacement (cost 2)
                 )
 
