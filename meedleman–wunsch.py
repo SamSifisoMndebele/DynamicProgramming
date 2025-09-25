@@ -27,7 +27,7 @@ def string_alignment(seq1, seq2):
 
     # Initialize DP table
     score = [[0] * (m + 1) for _ in range(n + 1)]
-    traceback = [[None] * (m + 1) for _ in range(n + 1)]
+    traceback: list[list[str|None]] = [[None] * (m + 1) for _ in range(n + 1)]
 
     # First row & col initialization (+1 per step)
     for i in range(1, n + 1):
@@ -108,11 +108,12 @@ def string_alignment(seq1, seq2):
     return score[n][m], ''.join(align1), ''.join(align2)
 
 
-# Textbook Example
-seq1 = "BAADDCABDDA"
-seq2 = "BBADCBA"
+if __name__ == '__main__':
+    # Textbook Example
+    seq1 = "BAADDCABDDA"
+    seq2 = "BBADCBA"
 
-score, align1, align2 = string_alignment(seq2, seq1)
-print("\nAlignment Score:", score)
-print("Align1:", align1)
-print("Align2:", align2)
+    score, align1, align2 = string_alignment(seq2, seq1)
+    print("\nAlignment Score:", score)
+    print("Align1:", align1)
+    print("Align2:", align2)
